@@ -10,7 +10,7 @@ Dir["./app/models/*.rb"].each do |file|
 end
 
 class App < Sinatra::Base
-  get '/' do
+  get '/sinatra' do
     'Hello world!'
   end
 end
