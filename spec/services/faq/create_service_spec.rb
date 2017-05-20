@@ -14,30 +14,30 @@ describe FaqModule::CreateService do
       @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer})
 
       response = @createService.call()
-      expect(response).to eq("Hashtag Obrigatória")
+      expect(response).to match("Hashtag Obrigatória")
     end
 
     it "With valid params, receive success message" do
       @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
 
       response = @createService.call()
-      expect(response).to eq("Criado com sucesso")
+      expect(response).to match("Criado com sucesso")
     end
 
     it "With valid params, find question and anwser in database" do
       @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
 
-      response = @createService.call()
-      expect(Faq.last.question).to eq(@question)
-      expect(Faq.last.answer).to eq(@answer)
+      @createService.call()
+      expect(Faq.last.question).to match(@question)
+      expect(Faq.last.answer).to match(@answer)
     end
 
     it "With valid params, hashtags are created" do
       @createService = FaqModule::CreateService.new({"question.original" => @question, "answer.original" => @answer, "hashtags.original" => @hashtags})
 
-      response = @createService.call()
-      expect(@hashtags.split(/[\s,]+/).first).to eq(Hashtag.first.name)
-      expect(@hashtags.split(/[\s,]+/).last).to eq(Hashtag.last.name)
+      @createService.call()
+      expect(@hashtags.split(/[\s,]+/).first).to match(Hashtag.first.name)
+      expect(@hashtags.split(/[\s,]+/).last).to match(Hashtag.last.name)
     end
   end
 end
