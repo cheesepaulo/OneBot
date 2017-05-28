@@ -6,6 +6,8 @@ gem "sinatra-activerecord"
 gem 'pg'
 gem 'rake'
 gem 'pg_search'
+gem 'rufus-scheduler'
+gem "httpclient"
 
 
 group :development do
