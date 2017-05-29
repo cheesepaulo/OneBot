@@ -30,7 +30,7 @@ module Message
           @client.post("https://hooks.slack.com/services/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",
           {:text => "#{@message}"}.to_json)
         end
-        "A Mensagem será enviada em: #{@date}"
+        "A Mensagem será enviada em: #{@date} Horário de Brasília"
       rescue
         'Problema no agendamento'
       end
