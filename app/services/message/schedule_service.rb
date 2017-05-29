@@ -1,24 +1,28 @@
 require 'rufus-scheduler'
+require 'date'
 
 module Message
   class ScheduleService
 
     def initialize(params)
-      @message = params['message.original']
+      @message = params['message-original']
       @date = params['date']
+      @timezone = params['timezone-original']
       @scheduler = Rufus::Scheduler.new
       @client = HTTPClient.new
     end
 
     def formatDate
-      @date.gsub! '-', '/'
-      @date.sub! 'T', ' '
-      @date.sub! 'Z', ''
+      @date = (Time.parse(@date))
+      @timezone = @timezone.to_i
+      @date = @date - @timezone.hours
+      @date = @date.strftime("%y/%m/%d %H:%M:%S")
     end
 
     def call
       return 'Mensagem obrigatória' if @message == nil || @message == ''
       return 'Data obrigatória' if @date == nil || @date == ''
+      return 'Fuso obrigatório' if @timezone == nil || @timezone == ''
 
       begin
         formatDate
