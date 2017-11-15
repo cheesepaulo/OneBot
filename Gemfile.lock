@@ -19,7 +19,7 @@ GEM
     diff-lcs (1.3)
     et-orbi (1.0.8)
       tzinfo
-    factory_girl (4.9.0)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
     ffaker (2.7.0)
     httpclient (2.8.3)
@@ -85,7 +85,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   database_cleaner
-  factory_girl (~> 4.0)
+  factory_bot (~> 4.0)
   ffaker
   httpclient
   pg
